@@ -1,7 +1,8 @@
+'use client';
 import React from 'react';
 
 interface CSVTableProps {
-  data: any[];
+  data: Array<Record<string, any>>;
   title: string;
 }
 
@@ -31,7 +32,7 @@ export const CSVTable: React.FC<CSVTableProps> = ({ data, title }) => {
               <tr key={idx} className="hover:bg-gray-50/80 transition-colors">
                 {headers.map((h) => (
                   <td key={h} className="px-4 py-3 text-sm text-gray-700 max-w-xs truncate whitespace-nowrap">
-                    {row[h]?.toString() || <span className="text-gray-300 italic">null</span>}
+                    {row[h] !== undefined && row[h] !== null ? row[h].toString() : <span className="text-gray-300 italic">null</span>}
                   </td>
                 ))}
               </tr>
